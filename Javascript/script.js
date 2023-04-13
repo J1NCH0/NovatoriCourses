@@ -497,15 +497,12 @@ const loadProfessions = () => {
 
 const changeProfession = (idx) => {
     menuActive = idx;
-    proffesion_item_secondary.innerHTML =`
-    ${ menu[idx].name}
-        <div class="proffesion__item--secondary">
-        <img src="images/React.svg" alt="React.Js Official Logo"/>
-        <h4>${name}</h4>
+    proffesion_item_secondary.innerHTML = `
+    <div class="proffesion__item--secondary">
+      <img src="images/React.svg" alt="React.Js Official Logo"/>
+      <h4>${menu[idx].name}</h4>
     </div>
-    <img src="images/arrowbluedown.svg" alt="arrowbluedown" />
-</div> 
-    `
+  `;
     loadProfessions();
 }
 
