@@ -436,7 +436,7 @@ const menu = [
     },
 ]
 
-
+const proffesion_img = document
 const proffesion = document.querySelector('.proffesion');
 
 const video_item = (title, index, video) => `
@@ -489,45 +489,48 @@ const section = document.querySelector('.syllabus__list')
 const coll = document.getElementsByClassName("syllabus__item");
 const proffesion_list = document.querySelector('.proffesion__list');
 const proffesion_item_secondary = document.querySelector('.proffesion__item--secondary');
+const proffesion_item_secondary_image = proffesion_item_secondary.querySelectorAll('img')
 const loadProfessions = () => {
     proffesion_list.innerHTML = menu.map((menu, idx) => title(menu.icon, menu.name, idx)).join('');
     changeDescription();
 }
 
 
+section.innerHTML = subjects.map((subject) => syllabus_item(syllabus_item_title(subject.name, subject.videos.length, subject.hasVideos), subject)).join('');
+
+const iconToActive = (icon) => icon.replace('.', 'active.');
+const title = (icon, title, idx) => `
+ <div onclick="changeProfession(${idx})" class="proffesion__item-wrapper ${menuActive == idx ? 'proffesion__item-wrapper--active' : ''}">
+                <div class="proffesion__item">
+                    <img src="${menuActive == idx ? iconToActive(icon) : icon}" alt="React.Js Official Logo"/>
+                    <h4>${title}</h4>
+                </div>
+ </div>
+`
+
+
 const changeProfession = (idx) => {
     menuActive = idx;
     proffesion_item_secondary.innerHTML = `
-    <div class="proffesion__item--secondary">
-      <img src="images/React.svg" alt="React.Js Official Logo"/>
+    <div class="proffesion__item--secondary" onclick="changeProfession(${idx})">
+      <img src="${iconToActive(menu[idx].icon)}" alt="React.Js Official Logo"/>
       <h4>${menu[idx].name}</h4>
     </div>
   `;
     loadProfessions();
 }
 
-section.innerHTML = subjects.map((subject) => syllabus_item(syllabus_item_title(subject.name, subject.videos.length, subject.hasVideos), subject)).join('');
-
-
-const title = (icon, title, idx) => `
- <div onclick="changeProfession(${idx})" class="proffesion__item-wrapper ${menuActive == idx ? 'proffesion__item-wrapper--active' : ''}">
-                <div class="proffesion__item">
-                    <img src="${menuActive == idx ? icon.replace('.', 'active.') : icon}" alt="React.Js Official Logo"/>
-                    <h4>${title}</h4>
-                </div>
- </div>
-`
 
 const proffesion_item = (icon, title, idx) => `
  <div onclick="changeProfession(${idx})" class="proffesion__item-wrapper ${menuActive == idx ? 'proffesion__item-wrapper--active' : ''}">
                 <div class="proffesion__item">
-                    <img src="${menuActive == idx ? icon.replace('.', 'active.') : icon}" alt="React.Js Official Logo"/>
+                    <img src="${menuActive == idx ? iconToActive(icon) : icon}" alt="React.Js Official Logo"/>
                     <h4>${title}</h4>
                 </div>
  </div>
 `
 
-// proffesion.insertAdjacentHTML('beforeend', menu.map((proffesion) => proffesion_item(proffesion.icon, proffesion.name)).join(''));
+// proffesion.insertAdjacentHTML('beforeend', menu.map((profesion) => proffesion_item(proffesion.icon, proffesion.name)).join(''));
 console.log(proffesion.title)
 loadProfessions();
 
